@@ -11,7 +11,7 @@ public class EncryptionTester {
 
         Encrypter enc = new Encrypter(shift);
 
-		enc.encrypt(inputFilePath, outputFilePath);
+		//enc.encrypt(inputFilePath, outputFilePath);
 		enc.decrypt(encryptedFilePath, decryptedFilePath);
 
 	}

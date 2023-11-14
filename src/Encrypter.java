@@ -45,6 +45,10 @@ public class Encrypter {
      */
     public void decrypt(String messageFilePath, String decryptedFilePath) throws Exception {
         //TODO: Call the read method, decrypt the file contents, and then write to new file
+    	
+    	File ImDecrypting = new File("decrypted.txt");
+    	System.out.println(readFile(messageFilePath));
+    	
     }
 
     /**
@@ -57,7 +61,14 @@ public class Encrypter {
     private static String readFile(String filePath) throws Exception {
         String message = "";
         //TODO: Read file from filePath
+        Scanner Imdying = new Scanner(new File(filePath));
+        
+        //Imdying.(System.getProperty("line.separator")); 
+        //i tried a delimiter and im leaving my rant in bc i want to //so this took me way to long to figure out and half of that was figuring out what dilimit means bc i have never heard that before AND I DIDNT NEED IT BC I WANNA READ IT AS ONE AND NOT LOTS OF DIFFERENT LINES 
+        message = Imdying.nextLine();
+        Imdying.close();
         return message;
+        
     }
 
     /**
