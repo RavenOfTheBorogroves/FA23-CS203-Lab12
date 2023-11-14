@@ -47,7 +47,9 @@ public class Encrypter {
         //TODO: Call the read method, decrypt the file contents, and then write to new file
     	
     	File ImDecrypting = new File("decrypted.txt");
-    	System.out.println(readFile(messageFilePath));
+    	String read =readFile(messageFilePath);
+    	int s = this.shift;
+    	
     	
     }
 
@@ -65,7 +67,9 @@ public class Encrypter {
         
         //Imdying.(System.getProperty("line.separator")); 
         //i tried a delimiter and im leaving my rant in bc i want to //so this took me way to long to figure out and half of that was figuring out what dilimit means bc i have never heard that before AND I DIDNT NEED IT BC I WANNA READ IT AS ONE AND NOT LOTS OF DIFFERENT LINES 
-        message = Imdying.nextLine();
+        while (Imdying.hasNextLine()) {
+        message = message + "\n" +Imdying.nextLine();
+        }
         Imdying.close();
         return message;
         
