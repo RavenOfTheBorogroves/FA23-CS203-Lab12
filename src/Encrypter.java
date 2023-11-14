@@ -46,10 +46,42 @@ public class Encrypter {
     public void decrypt(String messageFilePath, String decryptedFilePath) throws Exception {
         //TODO: Call the read method, decrypt the file contents, and then write to new file
     	
-    	File ImDecrypting = new File("decrypted.txt");
+    	File ImDecrypting = new File(decryptedFilePath);
     	String read =readFile(messageFilePath);
     	int s = this.shift;
     	
+    	
+    	read.replaceAll("\n","@" ); //i did this so that i can keep the enter spaces and still be able to use to character array
+    	StringBuilder attempt = new StringBuilder();
+    	for(char character:read.toCharArray()) {
+    		int value = (int)character;
+    		if (value <= 64 || value >= 123) {
+    			attempt.append(character);
+    		} else if (value>=65&&value <=90){
+    			int newValue = value - s ;
+    			if (newValue < 65) {
+    				int newShift = 65 - newValue;
+    				newValue = 90 - newShift + 1;
+    			}
+    			char newCharacter = (char) newValue;
+				attempt.append(newCharacter);
+    		} else if (value>=97&&value<=122) {
+    			int newValue = value - s ;
+    			if (newValue < 97) {
+    				int newShift = 97 - newValue;
+    				newValue = 122 - newShift + 1;
+    				
+    			}
+    			char newCharacter = (char) newValue;
+				attempt.append(newCharacter);
+    		} else {
+    			attempt.append(character);
+    		}
+    		//i am really proud of myself
+    	}
+    	String decoded = attempt.toString();
+    	decoded.replaceAll("@", "\n");
+    	System.out.println(decoded);
     	
     }
 
