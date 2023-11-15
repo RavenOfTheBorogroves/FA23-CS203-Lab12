@@ -36,6 +36,40 @@ public class Encrypter {
      */
     public void encrypt(String inputFilePath, String encryptedFilePath) throws Exception {
         //TODO: Call the read method, encrypt the file contents, and then write to new file
+    	
+    	String Ireadit = readFile(inputFilePath);
+    	int s = this.shift;
+    	Ireadit.replaceAll("\n","@" );
+    	StringBuilder attempt = new StringBuilder();
+    	for(char character:Ireadit.toCharArray()) {
+    		int value = (int)character;
+    		if (value <= 64 || value >= 123) {
+    			attempt.append(character);
+    		} else if (value>=65&&value <=90){
+    			int newValue = value + s ;
+    			if (newValue > 90) {
+    				int newShift = newValue - 90;
+    				newValue = 65 + newShift - 1;
+    			}
+    			char newCharacter = (char) newValue;
+				attempt.append(newCharacter);
+    		} else if (value>=97&&value<=122) {
+    			int newValue = value + s ;
+    			if (newValue >122) {
+    				int newShift = newValue-122;
+    				newValue = 97 + newShift - 1;
+    				
+    			}
+    			char newCharacter = (char) newValue;
+				attempt.append(newCharacter);
+    		} else {
+    			attempt.append(character);
+    		}
+    		//i am really proud of myself
+    	}
+    	String encoded = attempt.toString();
+    	encoded.replaceAll("@", "\n");
+    	writeFile(encoded,encryptedFilePath);
     }
 
     /**
@@ -88,6 +122,7 @@ public class Encrypter {
     	soClose.write(decoded);
     	soClose.flush();// put it DOWN THE TOILET
     	soClose.close();
+    	//write
     	
     	
     }
@@ -119,9 +154,17 @@ public class Encrypter {
      *
      * @param data     the data to be written to the file
      * @param filePath the path to the file where the data will be written
+     * @throws IOException 
      */
-    private static void writeFile(String data, String filePath) {
+    private static void writeFile(String data, String filePath) throws IOException {
         //TODO: Write to filePath
+    	
+    	File dearLordHelpMe = new File(filePath);
+    	FileWriter letsgo = new FileWriter(dearLordHelpMe);
+    	letsgo.write(data);
+    	letsgo.flush();
+    	letsgo.close();
+    	
     }
 
     /**
