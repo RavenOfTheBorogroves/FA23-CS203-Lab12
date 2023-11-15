@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 public class Encrypter {
@@ -81,7 +83,12 @@ public class Encrypter {
     	}
     	String decoded = attempt.toString();
     	decoded.replaceAll("@", "\n");
-    	System.out.println(decoded);
+    	//System.out.println(decoded); //*we are the champions starts playing in the background*
+    	FileWriter soClose = new FileWriter(ImDecrypting);
+    	soClose.write(decoded);
+    	soClose.flush();// put it DOWN THE TOILET
+    	soClose.close();
+    	
     	
     }
 
