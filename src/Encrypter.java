@@ -79,7 +79,7 @@ public class Encrypter {
      * @param decryptedFilePath the path to the file where the decrypted text will be written
      * @throws Exception if an error occurs while reading or writing the files
      */
-    public void decrypt(String messageFilePath, String decryptedFilePath) throws Exception {
+    public void decrypt(String messageFilePath, String decryptedFilePath) throws Exception { //i did decrypt first bc its easiest to test if i have something wrong (:
         //TODO: Call the read method, decrypt the file contents, and then write to new file
     	
     	File ImDecrypting = new File(decryptedFilePath);
